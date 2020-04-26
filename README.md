@@ -1,2 +1,2 @@
-# artogo
-Art To Go
+# artomia
+Artomia
