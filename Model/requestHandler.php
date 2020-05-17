@@ -27,10 +27,14 @@
 				echo $result;
 				break;
 			case 'addToCart':
-				$result = addToCart($_POST['id'], $_POST['amount'], $_POST['price']);
+				$result = addToCart($_POST['id'], $_POST['image'], $_POST['name'], $_POST['amount'], $_POST['price']);
 				echo $result;
 				break;
+<<<<<<< HEAD
 			case 'displayCart':
+=======
+			case 'getCartItems':
+>>>>>>> 5d425a70e38c8e72dc9d4d027d237f87b6582ea3
 				$result = getCartItems();
 				echo json_encode($result);
 				break;

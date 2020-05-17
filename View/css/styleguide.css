@@ -75,19 +75,20 @@ a:hover {
 
 /* Footer */
 .footer {
-	padding: 10% 8% 18.33%;
+	padding: 15% 5% 5%;
 	color: #2c2c2c;
 }
 
 .footer_container {
 	display: flex;
-	justify-content: center;
-	background-color: red;
+	align-items: center;
+	background-color: var(--color-neutral);
+	margin:30px 40px 15px;
 }
 
 .footer_flexbox{
 	width: 20%;
-	text-align: left;
+	text-align: center;
 }
 
 .footer_ul {
@@ -104,11 +105,13 @@ a:hover {
 }
 
 
-.footer_ul li img {
+.footer_ul > div img {
 	align-self: center;
+	width: 100%;
 }
 
 .copyright {
+	font-size: 10pt;
 	margin-bottom: 2%;
 	text-align: center;
 }
@@ -124,7 +127,19 @@ a:hover {
 	box-shadow: 0.2em 0.2em 0.3em var(--color-shadow);
 	font-size: 12pt;
 	font-weight: 500;
+}
 
+@media (max-width: 800px) {
+	.footer_flexbox {
+		text-align: center;
+		display: block;
+		width: 100%;
+		font-size: 80%;
+	}
+
+	.copyright {
+		font-size: 70%;
+	}
 }
 
 /*Homepage Video*/
@@ -179,6 +194,27 @@ input[type=text]::placeholder {
 
 
 /*NAV BAR*/
+.nav-crumds {
+	margin-left: 42px;
+}
+
+.nav-crumds li {
+	display: inline;
+	font-weight: 500;
+	font-size: 10pt;
+}
+
+.nav-crumds li a{
+	color: var(--color-brandcolor-dark);
+}
+
+.nav-crumds li a:hover {
+	color: var(--color-brandcolor-main);
+}
+
+.nav-crumds li:last-child a {
+	color: var(--color-brandcolor-main);
+}
 
 .nav-li a {
 	display: inline;
@@ -245,10 +281,10 @@ input[type=text]::placeholder {
 	margin: auto;
 	width: 100%;
 	padding: 0.4% 0%;
-	background-color: inherit;
+	background-color: rgba(255,255,255,0.95);
 	position: fixed;
 	top: 0;
-	z-index: 2;
+	z-index: 5;
 	box-shadow: 1px 1px 10px var(--color-brandcolor-light);
 }
 .nav-pills {
@@ -305,15 +341,34 @@ input[type=text]::placeholder {
 }
 
 .nav-pills :not(.active)>a:hover {
-	background-color: var(--color-warning);
-	border: 0.2em solid var(--color-brandcolor-main);
-	color: var(--color-neutral);
+	background-color: var(--color-brandcolor-main);
+	border: 0.13em solid var(--color-brandcolor-light);
+	color: var(--color-neutral-light);
 }
 
 .subtitle1 {
+	margin-top: 10px;
 	margin-left: 10%;
 }
 
+.title-card {
+	height: 50px;
+	margin:10px 10% 0 10%;
+
+	background-image: url(../img/icon/spacer_pattern.svg);
+	background-repeat: repeat-x;
+	overflow: hidden;
+	opacity: 30%;
+}
+
+
+input[type=submit]:hover {	
+	cursor: pointer;
+}
+
+.form-select {
+	margin: 10px 0;
+}
 
 select {
 	border: 0.1em solid var(--color-control-neutral);
@@ -347,13 +402,18 @@ select {
 
 }
 
+.card-section {
+	margin: 20px 0;
+}
+
 .intro_card {
 	padding: 0 18.33%;
 }
 
 .product-imagemain {
-	width: 50%;
-	margin-left: 18.33%;
+	width: 100%;
+	margin: auto;
+	padding: 0 18.33%;
 
 }
 
@@ -419,6 +479,13 @@ select {
 .product_intro {
 	margin-top: 10px;
 	margin-left: 18.33%;
+}
+
+.product_intro_strong {
+	padding: 20px 0;
+	font-weight: 700px;
+	font-size: 25pt;
+
 }
 
 .recommend_title {
@@ -508,11 +575,87 @@ select {
 	background-color: red;
 }
 
-.thumbnail_sm {
-	height: 10px;
-	width: 10px;
+/*cart popup*/
+
+/* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
+/* The actual popup */
+.popup .popuptext {
+  width: 250px;
+  height: 250px;
+  overflow-y: scroll;
+  border: 2px var(--color-brandcolor-light) solid;
+  background-color: var(--color-neutral);
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  top: 50px;
+  bottom: -540%;
+  left: 50%;
+  margin-left: -125px;
+  box-shadow: 2px 4px 10px var(--color-brandcolor-dark);
+}
 
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent var(--color-brandcolor-main) transparent;
+}
 
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
 
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+/*little cart*/
+.cart_item {
+	width: 100%;
+	padding:1em;
+	height: 90px;
+	display: flex;
+}
+
+.cart_image_xs {
+	flex: 40%;	
+	padding-left: 0.5em;
+}
+.thumbnail_xs {
+	width: 100%;
+}
+
+.cart_info_xs {
+	flex: 60%;
+	padding-right: 0.5em;
+	text-align: right;
+	font-size: 10pt;
+}
