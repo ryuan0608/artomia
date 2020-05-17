@@ -63,6 +63,40 @@
 		return json_encode($products);
 	}
 
+	function getAllProductsSortedByPurchase($order){
+		$conn = connectToDB();
+
+		//2. Read form table
+		$arr = array();
+		$sql = "SELECT *
+				FROM products
+				ORDER BY purchase " . $order;
+		$result = $conn->query($sql);
+		$products = array();
+		while ($row = $result->fetch_object()){
+			$products[] = $row;
+		}
+	
+		return json_encode($products);
+	}
+
+	function getAllProductsSortedByDate($order){
+		$conn = connectToDB();
+
+		//2. Read form table
+		$arr = array();
+		$sql = "SELECT *
+				FROM products
+				ORDER BY date " . $order;
+		$result = $conn->query($sql);
+		$products = array();
+		while ($row = $result->fetch_object()){
+			$products[] = $row;
+		}
+	
+		return json_encode($products);
+	}
+
 	// CART FUNCTIONS
 
 	// Array find loops an array looking for the first object that matches a boolean function

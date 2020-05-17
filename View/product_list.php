@@ -1,4 +1,4 @@
-<?
+<?php
 	include_once "../Model/functions.php";
 	include_once "partials/header.php";
 ?>
@@ -7,11 +7,13 @@
 <head>
 	<meta charset="UTF-8">
 	 <meta name="viewport" content="width=device-width">
-	 <!-- <link rel="stylesheet" href="css/styleguide.css">
-	 <link rel="stylesheet" href="css/gridsystem.css">
-	 <link rel="stylesheet" href="css/storetheme.css"> -->
+	 <!-- <link rel="stylesheet" href="css/styleguide.css"> -->
+	 <!-- <link rel="stylesheet" href="css/gridsystem.css"> -->
+	 <!-- <link rel="stylesheet" href="css/storetheme.css"> -->
+	 <!-- <link rel="stylesheet" href="css/select.css"> -->
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="js/functions.js"></script>
+	<script src="js/select.js"></script>
 	<script>
 		setUpProductListPage();
 	</script>
@@ -25,11 +27,22 @@
   	</nav>
 	</div>
 	<hr class="spacer">
-	<h2 class="subtitle1">Gallery</h2>
-	<select class="sort_by_price" onchange="sortProductsByPrice();">
-		<option>⬆️</option>
-		<option>⬇️</option>
-	</select>
+	<div class="subtitle">
+		<div style="text-align: center;">
+			<label style="font-size: 50pt; font-weight: 900;">Original art for sale</label>
+			<p>Art for the soul. Art for life. Art for your home. Artfinder connects passionate artists with art lovers around the world.</p>
+		</div>
+	</div>
+
+	<div class="sorting">
+		<div class="sorting-select">
+			<button class="selected" onclick="changeSortingToPrice(); sortProducts();">price</button>
+			<button onclick="changeSortingToDate(); sortProducts();">date</button>
+			<button onclick="changeSortingToPopular(); sortProducts();">popular</button>
+		</div>
+		<button  class="sorting-order sorting-ascending" onclick="changeOrder(); sortProducts();" style="outline: none; border: none; background-color: white; margin-left: auto;">
+		</button>
+	</div>
 	<div class="container-flex xs-small md-medium product product-list">
 		<div class="column">
 				

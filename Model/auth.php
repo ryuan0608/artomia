@@ -1,9 +1,9 @@
-<?	
+<?php	
 
-	function connectToDB() { //mysquli
+	function connectToDB() { //mysqli
 		$serverName = "localhost";
-		$username = "Alice";
-		$password = "2Zhlmcl?";
+		$username = "root";
+		$password = "root";
 		$dbName = "Artomia_product";
 		$conn = new mysqli($serverName, $username, $password, $dbName);
 

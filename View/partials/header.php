@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="css/styleguide.css">
 	<link rel="stylesheet" href="css/gridsystem.css">
 	<link rel="stylesheet" href="css/storetheme.css">
+	<link rel="stylesheet" href="css/select.css">
 	<link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@1,700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
@@ -16,7 +17,7 @@
 <div class="nav" >
 	<ul class="nav-pills">
 		<li id="nav-logo">
-		  	<img src='../Images/artomia_logo.png' alt="artomia_logo">
+		  	<img src='./img/artomia_logo.png' alt="artomia_logo">
 		</li>  
 		<li id="search-bar">
 			<div class="searchbar-container">
@@ -28,7 +29,7 @@
 			<li><a href="#customize">Customize</a></li>
 			<li><a href="#gallery">Gallery</a></li>
 		    <li><a href="#event">Event</a></li>
-			<li><a href="#about">About</a></li>	 
+			<li><a href="#about" onclick="displayCart();">Cart</a></li>	 
 			<li class="menu-icon dropdown">
 				<button class="dropbtn">
 				</button>
