@@ -255,13 +255,8 @@ function addToCart(id){
 		{
 			request:"addToCart",
 			id: id,
-<<<<<<< HEAD
-            name: name,
-            image: image,
-=======
 			image: image,
 			name: name,
->>>>>>> 5d425a70e38c8e72dc9d4d027d237f87b6582ea3
 			amount: amount,
 			price: price
 		},
