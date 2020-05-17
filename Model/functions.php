@@ -75,7 +75,7 @@
 	    return isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 	}
 
-	function addToCart($id, $amount, $price) {
+	function addToCart($id, $image, $name, $amount, $price) {
 	    $cart = getCart();
 	    
 	    $p = array_find(
@@ -88,6 +88,8 @@
 	    } else {
 	        $_SESSION['cart'][] = (object)[
 	            "id"=>$id,
+	            "image"=>$image,
+	            "name"=>$name,
 	            "amount"=>$amount,
 	            "price"=>$price
 	        ];

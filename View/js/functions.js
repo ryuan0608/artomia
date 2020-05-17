@@ -30,19 +30,22 @@ function getProductWithId(id) {
 	);
 }
 
-function listRecommendations(id) {
+function listRecommendations() {
+
 	$.post("../Model/requestHandler.php",
 		{
 			request:"getAllProducts"
 		},
+
 		function(data, status){
 			// get all products
 			var products = JSON.parse(data);
 
 			//add to html
 			for(var i = 0; i < 8; i++) {
+
 				// Add ith image to ith img tag
-				var src = products[i].image;
+				var src = products[i + 10].image;
 				$('.product_recommend').eq(i).attr("src", src);
 
 				var name = products[i].name;
@@ -147,20 +150,76 @@ function buildProductTemplate(product) {
 function addToCart(id){
 	var amount = $('select[name="amount"] option:selected').text();
 	var price = $('.product_price').text();
+	var image = $('.product_image').attr("src");
+	var name = $('.product_title').text();
 
 	$.post("../Model/requestHandler.php",
 		{
 			request:"addToCart",
 			id: id,
+			image: image,
+			name: name,
 			amount: amount,
 			price: price
 		},
 		function(data, status){
-			// get first product
-			var response = data;
-			alert(response);
-
 			// todo: add to cart animation
+			displayCart();
+			setTimeout(function(){
+				hideCart();
+				}, 2000);
+			
 		}
 	);
+}
+
+function hideCart() {
+	$('.popuptext').hide('fast');
+
+	$('.cover').css('z-index', 0);
+}
+
+// When the user clicks on div, open the popup
+function displayCart() {
+	// get cart items
+	$.post("../Model/requestHandler.php",
+		{
+			request:"getCartItems"
+
+		},
+		function(data, status){
+			// get first product
+			var items = JSON.parse(data);
+
+			// todo: add to cart animation
+			$('.popuptext').html('');
+			for(var i = 0; i < items.length; i++) {
+				// templatize
+				var htmlTemplate = buildCartItemTemplate(items[i]);
+
+				$('.popuptext').append(htmlTemplate);
+			}
+
+			var popup = document.getElementById("myPopup");
+	popup.classList.toggle("show");
+
+	$('#myPopup').show('fast');
+
+	$('.cover').css('z-index', 3);
+		}
+	);
+}
+
+
+
+
+function buildCartItemTemplate(item) {
+	return "<div class='cart_item'>" + 
+				"<div class='cart_image_xs'><img class='thumbnail_xs' src='" + item.image + "'/></div>" + 
+				"<div class='cart_info_xs'>" +
+					"<strong class='product_title_xs'>" + item.name + "</strong><br>" + 
+					"<label class='product_amout_xs'>" + "x" + item.amount + "</label><br>" + 
+					"<label class='product_subtotal_xs'>" + "$" + item.total + "</label>" + 
+				"</div>"
+		   "</div>";		 
 }

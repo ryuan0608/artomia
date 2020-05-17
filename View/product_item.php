@@ -1,8 +1,6 @@
 <?
 	include_once "../Model/functions.php";
 	include_once "partials/header.php";
-
-	session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +18,19 @@
 	<title>Artomia</title>
 </head>
 <body>
-	<nav class="nav-crumds">
-	  	<ul>
-			<li><a href=" ">Back</a></li>
-	   	</ul>
-  	</nav>
+	<div class="cover" style="position: absolute; width: 100%; height: 100%; z-index: 0; background-color: transparent;" onclick="hideCart();">
+	</div>
+	<div class="nav-crumds" style="margin-top: 75px;">
+		<ul>
+			<  
+			<li><a href="" style="margin-left: 10px; margin-right: 10px";>Home </a></li>
+ 				 /  
+		  	<li><a href="" style="margin-left: 10px; margin-right: 10px;">Gallery </a></li>
+				 /  
+		  	<li><a href="" class="product_title highlight" style="margin-left: 10px; margin-right: 10px;"></a></li>	
+		</ul>
+	  	
+  	</div>
 	<div class="product_info grid gap xs-medium">
 		 <div class="col-xs-12 col-md-7">
 		 	<div class="product-imagemain">
@@ -44,129 +50,121 @@
 					<p class="product_artist product_intro_body"></p>
 				</div>
 				<div>
-					<p class="product_materia product_intro_body"></p>	
+					<p class="product_material product_intro_body"></p>	
 				</div>
 				<div>
 					<p class="product_size product_intro_body"></p>
 				</div>
-				<div>
-					<p class="product_price"></p>	
+				<div class=" product_intro_strong">
+					<label>$</label><label class="product_price"></label>	
 				</div>
 			</div>
-			<div class="card-section">
-      		<div class="display-flex">
-       			<div class="flex-stretch">
-        			<strong>Amount</strong>
-       			</div>
-				<div class="flex-none form-select">
-					<select name="amount">
-					 <option >1</option>
-					 <option >2</option>
-					 <option >3</option>
-					 <option >4</option>
-					 <option >5</option>
-					 <option >6</option>
-					 <option >7</option>
-					 <option >8</option>
-					 <option >9</option>
-					 <option >10</option>
-					</select>
-			    </div>
-      		</div>
-      		<div class="card-section">
-      			<input type="submit" class="form-button" value="Add To Cart" onclick="addToCart(<? echo $_GET['id']; ?>)">
-     		</div>
-    	</div>
-			
+			<div class="card-section" >
+	      		<div class="display-flex">
+	       			<div class="flex-stretch">
+	        			<strong>Amount</strong>
+	       			</div>
+					<div class="form-select">
+						<select name="amount">
+						 <option >1</option>
+						 <option >2</option>
+						 <option >3</option>
+						 <option >4</option>
+						 <option >5</option>
+						 <option >6</option>
+						 <option >7</option>
+						 <option >8</option>
+						 <option >9</option>
+						 <option >10</option>
+						</select>
+				    </div>
+	      		</div>
+	      		<div class="card-section">
+	      			<input type="submit" class="form-button" value="Add To Cart" onclick="addToCart(<? echo $_GET['id']; ?>)">
+	     		</div>
+	    	</div>
 		</div>
-
-		
-
-    	
 	</div>
 
-
-     
-     
-    
-   </div>
-  </div>
-  <hr class="spacer">
-  <h2 class="subtitle1">Related Products</h2>
-  <div class="container-flex xs-small md-medium product product-list">
-  	<div class="column">
-  		<div>
-  			<img class="product_recommend" src="" alt="">
-  			<div class="product_recommend_info">
-	  			<p class="recommend_title"></p>
-	  			<p class="recommend_artist"></p>
-	  			<p class="recommend_intro"></p>
-  			</div>
-  		</div> 		
-		<div>
-			<img class="product_recommend" src="" alt="">
-			<div class="product_recommend_info">
-	  			<p class="recommend_title"></p>
-		  		<p class="recommend_artist"></p>
-		  		<p class="recommend_intro"></p>
+	<hr class="spacer">
+	<div class=title-card>
+	</div>
+	<h2 class="subtitle1">Related Products</h2>
+	
+	<div class="container-flex xs-small md-medium product product-list">
+	  	<div class="column">
+	  		<div>
+	  			<img class="product_recommend" src="" alt="">
+	  			<div class="product_recommend_info">
+		  			<p class="recommend_title"></p>
+		  			<p class="recommend_artist"></p>
+		  			<p class="recommend_intro"></p>
+	  			</div>
+	  		</div> 		
+			<div>
+				<img class="product_recommend" src="" alt="">
+				<div class="product_recommend_info">
+		  			<p class="recommend_title"></p>
+			  		<p class="recommend_artist"></p>
+			  		<p class="recommend_intro"></p>
+				</div>
 			</div>
 		</div>
-	</div>
-  	  	<div class="column">
-  		<div>
-  			<img class="product_recommend" src="" alt="">
-  			<div class="product_recommend_info">
-	  			<p class="recommend_title"></p>
-	  			<p class="recommend_artist"></p>
-	  			<p class="recommend_intro"></p>
-  			</div>
-  		</div> 		
-		<div>
-			<img class="product_recommend" src="" alt="">
-			<div class="product_recommend_info">
-	  			<p class="recommend_title"></p>
-		  		<p class="recommend_artist"></p>
-		  		<p class="recommend_intro"></p>
+	  	  	<div class="column">
+	  		<div>
+	  			<img class="product_recommend" src="" alt="">
+	  			<div class="product_recommend_info">
+		  			<p class="recommend_title"></p>
+		  			<p class="recommend_artist"></p>
+		  			<p class="recommend_intro"></p>
+	  			</div>
+	  		</div> 		
+			<div>
+				<img class="product_recommend" src="" alt="">
+				<div class="product_recommend_info">
+		  			<p class="recommend_title"></p>
+			  		<p class="recommend_artist"></p>
+			  		<p class="recommend_intro"></p>
+				</div>
 			</div>
 		</div>
-	</div>
-  	<div class="column">
-  		<div>
-  			<img class="product_recommend" src="" alt="">
-  			<div class="product_recommend_info">
-	  			<p class="recommend_title"></p>
-	  			<p class="recommend_artist"></p>
-	  			<p class="recommend_intro"></p>
-  			</div>
-  		</div> 		
-		<div>
-			<img class="product_recommend" src="" alt="">
-			<div class="product_recommend_info">
-	  			<p class="recommend_title"></p>
-		  		<p class="recommend_artist"></p>
-		  		<p class="recommend_intro"></p>
+	  	<div class="column">
+	  		<div>
+	  			<img class="product_recommend" src="" alt="">
+	  			<div class="product_recommend_info">
+		  			<p class="recommend_title"></p>
+		  			<p class="recommend_artist"></p>
+		  			<p class="recommend_intro"></p>
+	  			</div>
+	  		</div> 		
+			<div>
+				<img class="product_recommend" src="" alt="">
+				<div class="product_recommend_info">
+		  			<p class="recommend_title"></p>
+			  		<p class="recommend_artist"></p>
+			  		<p class="recommend_intro"></p>
+				</div>
 			</div>
 		</div>
-	</div>
-  	<div class="column">
-  		<div>
-  			<img class="product_recommend" src="" alt="">
-  			<div class="product_recommend_info">
-	  			<p class="recommend_title"></p>
-	  			<p class="recommend_artist"></p>
-	  			<p class="recommend_intro"></p>
-  			</div>
-  		</div> 		
-		<div>
-			<img class="product_recommend" src="" alt="">
-			<div class="product_recommend_info">
-	  			<p class="recommend_title"></p>
-		  		<p class="recommend_artist"></p>
-		  		<p class="recommend_intro"></p>
+	  	<div class="column">
+	  		<div>
+	  			<img class="product_recommend" src="" alt="">
+	  			<div class="product_recommend_info">
+		  			<p class="recommend_title"></p>
+		  			<p class="recommend_artist"></p>
+		  			<p class="recommend_intro"></p>
+	  			</div>
+	  		</div> 		
+			<div>
+				<img class="product_recommend" src="" alt="">
+				<div class="product_recommend_info">
+		  			<p class="recommend_title"></p>
+			  		<p class="recommend_artist"></p>
+			  		<p class="recommend_intro"></p>
+				</div>
 			</div>
 		</div>
-	</div>
-  </div>
+	</div>	
 </body>
 
 <footer><? include_once "partials/footer.php"; ?></footer>

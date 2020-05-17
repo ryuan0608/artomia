@@ -19,8 +19,12 @@
 				echo $result;
 				break;
 			case 'addToCart':
-				$result = addToCart($_POST['id'], $_POST['amount'], $_POST['price']);
+				$result = addToCart($_POST['id'], $_POST['image'], $_POST['name'], $_POST['amount'], $_POST['price']);
 				echo $result;
+				break;
+			case 'getCartItems':
+				$result = getCartItems();
+				echo json_encode($result);
 				break;
 			default:
 				# code...

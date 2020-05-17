@@ -15,8 +15,4 @@ a {
 	color: var(--color-main);
 }
 
-.flex-spacerb {
-	flex: none;
-	width: 1em;
-}
 
