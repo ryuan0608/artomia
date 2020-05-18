@@ -7,13 +7,8 @@
 <head>
 	<meta charset="UTF-8">
 	 <meta name="viewport" content="width=device-width">
-	 <!-- <link rel="stylesheet" href="css/styleguide.css"> -->
-	 <!-- <link rel="stylesheet" href="css/gridsystem.css"> -->
-	 <!-- <link rel="stylesheet" href="css/storetheme.css"> -->
-	 <!-- <link rel="stylesheet" href="css/select.css"> -->
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="js/functions.js"></script>
-	<script src="js/select.js"></script>
 	<script>
 		setUpProductListPage();
 	</script>
@@ -30,7 +25,7 @@
 	<div class="subtitle">
 		<div style="text-align: center;">
 			<label style="font-size: 50pt; font-weight: 900;">Original art for sale</label>
-			<p>Art for the soul. Art for life. Art for your home. Artfinder connects passionate artists with art lovers around the world.</p>
+			<p>Art for your beautiful home. Connect with young artists on Artomia!</p>
 		</div>
 	</div>
 

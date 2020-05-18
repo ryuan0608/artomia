@@ -7,12 +7,19 @@
 	<link rel="stylesheet" href="css/styleguide.css">
 	<link rel="stylesheet" href="css/gridsystem.css">
 	<link rel="stylesheet" href="css/storetheme.css">
-	<link rel="stylesheet" href="css/select.css">
 	<link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@1,700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.cart').hover(function() {
+				$('.nav-icon').show();	
+			}, function() {
+				$('.nav-icon').hide();	
+			})
+		});
+	</script>
 </head>
 
 <div class="nav">
@@ -27,22 +34,23 @@
 			</div>
 		</li>
 		<div class="nav-li">
-			<li><a href="#customize">Customize</a></li>
-			<li><a href="#gallery">Gallery</a></li>
+			<li><a href="index.php">Home</a></li>
+			<li><a href="product_list.php">Gallery</a></li>
 		    <li class="popup">
-		    	<a href="#Cart" onclick="displayCart()">Cart</a>
+		    	<a class="cart" href="product_cart.php" onclick="displayCart()">Cart<img class="nav-icon" src="img/icon/cart_inverted.svg" alt=""></a>
 		    	<span style="display: none;" class="popuptext" id="myPopup">
 		    	</span>
 			</li>
 			
-			<li><a href="#about">About</a></li>	 
+			<li><a href="index.php">About</a></li>	 
 			<li class="menu-icon dropdown">
 				<button class="dropbtn">
 				</button>
 				<div class="dropdown-content">
-					<a href="#">Customize</a>
-					<a href="#">Gallery</a>
-					<a href="#">Event</a>
+					<a href="index.php">Home</a>
+					<a href="product_list.php">Gallery</a>
+					<a href="product_cart.php">Cart</a>
+					<a href="">About</a>
 				</div>
 			</li> 	
 		</div>

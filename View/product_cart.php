@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Fruit Store</title>
+    <title>Artomia-Cart</title>
 </head>
 <body>
     <div class="container">

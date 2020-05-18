@@ -45,16 +45,19 @@ function listRecommendations() {
 			for(var i = 0; i < 8; i++) {
 
 				// Add ith image to ith img tag
+				var href = "product_item.php?id=" + products[i + 10].id;
+				$('.product_link').eq(i).attr("href", href);
+
 				var src = products[i + 10].image;
 				$('.product_recommend').eq(i).attr("src", src);
 
-				var name = products[i].name;
+				var name = products[i + 10].name;
 				$('.recommend_title').eq(i).text(name);
 
-				var author = products[i].artist;
+				var author = products[i + 10].artist;
 				$('.recommend_artist').eq(i).text(author);
 
-				var intro = products[i].description;
+				var intro = products[i + 10].description;
 				$('.recommend_intro').eq(i).text(intro);
 
 			}
@@ -236,10 +239,16 @@ function sortProductsByPurchase() {
 
 function buildProductTemplate(product) {
 	// TODO: build html template for product
-	var template = "<div class='template'>" + 
-						"<img class='thumbnail' style='width: 50px;' src='" + product.image + "'><br/>" + 
-						"<p class='template_price'>" + product.price + "</p>" + 
-					"</div>";
+	var template = '<div>' + 
+						'<a href="product_item.php?id=' + product.id + '">' +
+				  			'<img class="product_recommend" src="' + product.image + '" alt="">' + 
+				  			'<div class="product_recommend_info">' +
+					  			'<p class="recommend_title">' + product.name + '</p>' +
+					  			'<p class="recommend_artist">' + product.artist + '</p>' +
+					  			'<p class=recommend_intro">' + product.description + '</p>' +
+				  			'</div>' +
+			  			'</a>' +
+			  		'</div>'; 		
 	return template;
 }
 
@@ -274,7 +283,7 @@ function addToCart(id){
 function hideCart() {
 	$('.popuptext').hide('fast');
 
-	$('.cover').css('z-index', 0);
+	$('.cover').css('z-index', -1);
 }
 
 // When the user clicks on div, open the popup
@@ -291,19 +300,30 @@ function displayCart() {
 
 			// todo: add to cart animation
 			$('.popuptext').html('');
+			var total = 0;
 			for(var i = 0; i < items.length; i++) {
+				total = total + items[i].total;
+
 				// templatize
 				var htmlTemplate = buildCartItemTemplate(items[i]);
 
 				$('.popuptext').append(htmlTemplate);
 			}
 
+			var cartTotalXs = "<div>" +
+							  "<strong>Total: </strong>" +
+							  "<label>$" + total + "</label>" +
+							  "</div>" +
+							  "<button class='form-button-xs'>Check Out</button>";
+			$('.popuptext').append(cartTotalXs);
+
+
 			var popup = document.getElementById("myPopup");
-	popup.classList.toggle("show");
+			popup.classList.toggle("show");
 
-	$('#myPopup').show('fast');
+			$('#myPopup').show('fast');
 
-	$('.cover').css('z-index', 3);
+			$('.cover').css('z-index', 3);
 		}
 	);
 }
@@ -332,36 +352,15 @@ function changeSortingToPopular() {
 }
 
 /* product_item.php */
-function displayCart() {
-    $.post("../Model/requestHandler.php",
-        {
-            request:"displayCart",
-        },
-        function(data, status){
-            // get first product
-            $('.cart').show('fast');
-            var items = JSON.parse(data);
-            $('.cart').html('');
-            for(var i = 0; i < items.length; i++) {
-                var htmlTemplate = buildCartItemTemplate(items[i]);
-                $('.cart').append(htmlTemplate);
-            }
-
-            setTimeout(function () {
-                $('.cart').hide('slow');
-            }, 2000);
-        }
-    );
-}
-
 
 function buildCartItemTemplate(item) {
-	return "<div class='cart_item'>" + 
+	return "<div class='cart_item_xs'>" + 
 				"<div class='cart_image_xs'><img class='thumbnail_xs' src='" + item.image + "'/></div>" + 
 				"<div class='cart_info_xs'>" +
 					"<strong class='product_title_xs'>" + item.name + "</strong><br>" + 
-					"<label class='product_amout_xs'>" + "x" + item.amount + "</label><br>" + 
+					"<label class='product_amount_xs'>" + "x" + item.amount + "</label><br>" + 
 					"<label class='product_subtotal_xs'>" + "$" + item.total + "</label>" + 
-				"</div>"
-		   "</div>";		 
+				"</div>" +
+		   "</div>" +
+		   "<hr style='margin:0.8em; border: 1px solid #CAC8FF; opacity: 70%'>";
 }
