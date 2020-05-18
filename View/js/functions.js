@@ -1,11 +1,40 @@
+/* index.php */
+function setUpHomePage() {
+	listGiftIdeas();
+}
+
+function listGiftIdeas() {
+
+	$.post("../Model/requestHandler.php",
+		{
+			request:"getAllProducts"
+		},
+
+		function(data, status){
+			// get all products
+			var products = JSON.parse(data);
+
+			//add to html
+			for(var i = 0; i < 4; i++) {
+
+				// Add ith image to ith img tag
+				var src = products[i + 14].image;
+				$('.gift_idea_image').eq(i).attr("src", src);
+
+				var name = products[i + 14].name;
+				$('.gift_idea_name').eq(i).text(name);
+
+				var href = "product_item.php?id=" + products[i + 14].id;
+				$('.gift_idea_link').eq(i).attr('href', href);
+			}
+		}
+	);
+}
+
+/* product_item.php */
 function setUpProductItemPage(id) {
 	getProductWithId(id);
 	listRecommendations();
-}
-
-function setUpProductListPage(){
-	listAllProducts();
-
 }
 
 function getProductWithId(id) {
@@ -28,6 +57,13 @@ function getProductWithId(id) {
 			$('.product_price').text(product.price);
 		}
 	);
+}
+
+/* product_list.php */
+function setUpProductListPage(){
+	$(document).ready(function() {
+		sortProducts();
+	})
 }
 
 function listRecommendations() {
@@ -64,6 +100,9 @@ function listRecommendations() {
 		}
 	);
 }
+
+
+
 
 function listAllProducts() {
 	$.post("../Model/requestHandler.php",
@@ -237,21 +276,69 @@ function sortProductsByPurchase() {
     );
 }
 
-function buildProductTemplate(product) {
-	// TODO: build html template for product
-	var template = '<div>' + 
-						'<a href="product_item.php?id=' + product.id + '">' +
-				  			'<img class="product_recommend" src="' + product.image + '" alt="">' + 
-				  			'<div class="product_recommend_info">' +
-					  			'<p class="recommend_title">' + product.name + '</p>' +
-					  			'<p class="recommend_artist">' + product.artist + '</p>' +
-					  			'<p class=recommend_intro">' + product.description + '</p>' +
-				  			'</div>' +
-			  			'</a>' +
-			  		'</div>'; 		
-	return template;
+function changeOrder() {
+    if($('.sorting-order').hasClass('sorting-ascending')) {
+        $('.sorting-order').removeClass('sorting-ascending').addClass('sorting-descending');
+    } else if ($('.sorting-order').hasClass('sorting-descending')) {
+        $('.sorting-order').removeClass('sorting-descending').addClass('sorting-ascending');
+    }
 }
 
+function changeSortingToPrice() {
+    $('.sorting-select button').removeClass();
+    $('.sorting-select button').eq(0).addClass('selected');
+}
+function changeSortingToDate() {
+    $('.sorting-select button').removeClass();
+    $('.sorting-select button').eq(1).addClass('selected');
+}
+function changeSortingToPopular() {
+    $('.sorting-select button').removeClass();
+    $('.sorting-select button').eq(2).addClass('selected');
+}
+
+/* search related */
+function useKeywordFilter(){
+	var keyword = $('#search-bar input').val();
+
+	window.location.replace("product_list.php?keyword=" + keyword);
+}
+
+function searchProducts(keyword) {
+	$.post("../Model/requestHandler.php",
+        {
+            request:"searchProducts",
+            keyword: keyword
+            
+        },
+        function(data, status){
+            // get first product
+            var products = JSON.parse(data);
+
+            var numberOfProducts = products.length;
+
+            //add to html
+            var colCount = 0;
+            $('.product-list .column').html('');
+            for(var i = 0; i < numberOfProducts; i++) {
+                // ith product
+                var product = products[i];
+
+                // build html template
+                var htmlTemplate = buildProductTemplate(product);
+
+                $('.product-list .column').eq(colCount).append(htmlTemplate);
+
+                colCount += 1;
+                if(colCount == 4) {
+                    colCount = 0;
+                }
+            }
+        }
+    );
+}
+
+/* cart related */
 function addToCart(id){
     var name = $('.product_title').text();
     var image = $('.product_image').attr('src');
@@ -330,30 +417,21 @@ function displayCart() {
 	);
 }
 
-
-/* product_list.php */
-function changeOrder() {
-    if($('.sorting-order').hasClass('sorting-ascending')) {
-        $('.sorting-order').removeClass('sorting-ascending').addClass('sorting-descending');
-    } else if ($('.sorting-order').hasClass('sorting-descending')) {
-        $('.sorting-order').removeClass('sorting-descending').addClass('sorting-ascending');
-    }
+/* templates */
+function buildProductTemplate(product) {
+	// TODO: build html template for product
+	var template = '<div>' + 
+						'<a href="product_item.php?id=' + product.id + '">' +
+				  			'<img class="product_recommend" src="' + product.image + '" alt="">' + 
+				  			'<div class="product_recommend_info">' +
+					  			'<p class="recommend_title">' + product.name + '</p>' +
+					  			'<p class="recommend_artist">' + product.artist + '</p>' +
+					  			'<p class=recommend_intro">' + product.description + '</p>' +
+				  			'</div>' +
+			  			'</a>' +
+			  		'</div>'; 		
+	return template;
 }
-
-function changeSortingToPrice() {
-    $('.sorting-select button').removeClass();
-    $('.sorting-select button').eq(0).addClass('selected');
-}
-function changeSortingToDate() {
-    $('.sorting-select button').removeClass();
-    $('.sorting-select button').eq(1).addClass('selected');
-}
-function changeSortingToPopular() {
-    $('.sorting-select button').removeClass();
-    $('.sorting-select button').eq(2).addClass('selected');
-}
-
-/* product_item.php */
 
 function buildCartItemTemplate(item) {
 	return "<div class='cart_item_xs'>" + 

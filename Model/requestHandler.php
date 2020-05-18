@@ -34,6 +34,10 @@
 				$result = getCartItems();
 				echo json_encode($result);
 				break;
+			case 'searchProducts':
+				$result = searchProducts($_POST['keyword']);
+				echo $result;
+				break;
 			default:
 				# code...
 				break;

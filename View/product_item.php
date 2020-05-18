@@ -18,8 +18,6 @@
 	<title>Artomia</title>
 </head>
 <body>
-	<div class="cover" style="position: absolute; width: 100%; height: 100%; z-index: -1; background-color: transparent;" onclick="hideCart();">
-	</div>
 	<div class="nav-crumds" style="margin-top: 75px;">
 		<ul>
 			<  

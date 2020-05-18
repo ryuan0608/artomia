@@ -1,17 +1,22 @@
 <?php
 	include_once "../Model/functions.php";
 	include_once "partials/header.php";
+
+	if(isset($_GET['keyword'])) {
+		echo '<script type="text/javascript">
+			 	searchProducts("' . $_GET['keyword'] . '")' . 
+			 '</script>';
+	} else {
+		echo '<script type="text/javascript">
+			  	setUpProductListPage();
+			  </script>';
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	 <meta name="viewport" content="width=device-width">
-	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="js/functions.js"></script>
-	<script>
-		setUpProductListPage();
-	</script>
 	<title>Artomia Gallery</title>
 </head>
 <body>

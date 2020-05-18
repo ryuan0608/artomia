@@ -97,6 +97,24 @@
 		return json_encode($products);
 	}
 
+	function searchProducts($keyword) {
+		$conn = connectToDB();
+
+		//2. Read form table
+		$arr = array();
+		$sql = "SELECT *
+				FROM products
+				WHERE name LIKE '%" . $keyword . "%' OR 
+					  artist LIKE '%" . $keyword . "%'";
+		$result = $conn->query($sql);
+		$products = array();
+		while ($row = $result->fetch_object()){
+			$products[] = $row;
+		}
+	
+		return json_encode($products);
+	}
+
 	// CART FUNCTIONS
 
 	// Array find loops an array looking for the first object that matches a boolean function
@@ -160,6 +178,42 @@
 	function  getCartTotalPrice() {
 	    $cart = isset($_SESSION['cart'])?$_SESSION['cart']:[];
 	    return array_reduce($cart,function($r,$o){return $r+($o->amount*$o->price);});
+	}
+
+	function cartTotals() {
+		$cart = getCart();
+
+		$cartprice = array_reduce($cart,function($r,$o){return $r + ($o->amount*$o->price);},0);
+
+
+		$pricefixed = number_format($cartprice, 2, '.', '');
+		$taxfixed = number_format($cartprice*0.0725, 2, '.', '');
+		$taxedfixed = number_format($cartprice*1.0725, 2, '.', '');
+
+
+		return '
+		<div class="card-section">
+		    <div class="display-flex">
+		        <div class="flex-stretch">
+		            <strong>Sub-Total</strong>
+		        </div>
+		        <div class="flex-none">&dollar;' . $pricefixed . '</div>
+		    </div>
+		    <div class="display-flex">
+		        <div class="flex-stretch">
+		            <strong>Taxes</strong>
+		        </div>
+		        <div class="flex-none">&dollar;' . $taxfixed . '</div>
+		    </div>
+		</div>
+		<div class="card-section">
+		    <div class="display-flex">
+		        <div class="flex-stretch">
+		            <strong>Total</strong>
+		        </div>
+		        <div class="flex-none">&dollar;' . $taxedfixed . '</div>
+		    </div>
+		</div>';
 	}
 
 ?>
