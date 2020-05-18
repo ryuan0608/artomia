@@ -83,6 +83,7 @@ a:hover {
 	font-size: 10pt;
 	font-weight: 500;
 	margin: 10px;
+	cursor: pointer;
 }
 
 
@@ -512,7 +513,7 @@ select {
 .recommend_artist {
 	font-size: 10pt;
 	font: normal;
-	margin-top: -12px;
+	margin-top: -2px;
 }
 
 .recommend_intro {
@@ -672,4 +673,31 @@ select {
 	padding-right: 0.5em;
 	text-align: right;
 	font-size: 10pt;
+}
+
+/*large_cart*/
+.cart_item_lg {
+	width: 100%;
+	padding:1em;
+	height: 250px; 
+	display: flex;
+}
+
+.cart_image_lg {
+	flex: 40%;	
+	padding-left: 0.5em;
+}
+.thumbnail_lg {
+	max-height: 200px;
+	max-width: 400px;
+	height: auto;
+	width: auto;
+	border-radius: 10px;
+}
+
+.cart_info_lg {
+	flex: 60%;
+	padding-right: 0.5em;
+	text-align: right;
+	font-size: 15pt;
 }

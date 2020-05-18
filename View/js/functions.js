@@ -314,7 +314,9 @@ function displayCart() {
 							  "<strong>Total: </strong>" +
 							  "<label>$" + total + "</label>" +
 							  "</div>" +
-							  "<button class='form-button-xs'>Check Out</button>";
+							  "<button class='form-button-xs' " +
+							  		  "onclick='window.location.href=\"product_cart.php\"'>Check Out" +
+						  	  "</button>";
 			$('.popuptext').append(cartTotalXs);
 
 

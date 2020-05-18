@@ -21,7 +21,8 @@
 		});
 	</script>
 </head>
-
+<div class="cover" style="position: absolute; width: 100%; height: 100%; z-index: -1; background-color: transparent;" onclick="hideCart();">
+</div>
 <div class="nav">
 	<ul class="nav-pills">
 		<li id="nav-logo">
@@ -37,7 +38,7 @@
 			<li><a href="index.php">Home</a></li>
 			<li><a href="product_list.php">Gallery</a></li>
 		    <li class="popup">
-		    	<a class="cart" href="product_cart.php" onclick="displayCart()">Cart<img class="nav-icon" src="img/icon/cart_inverted.svg" alt=""></a>
+		    	<a class="cart" onclick="displayCart()">Cart<img class="nav-icon" src="img/icon/cart_inverted.svg" alt=""></a>
 		    	<span style="display: none;" class="popuptext" id="myPopup">
 		    	</span>
 			</li>
@@ -49,7 +50,7 @@
 				<div class="dropdown-content">
 					<a href="index.php">Home</a>
 					<a href="product_list.php">Gallery</a>
-					<a href="product_cart.php">Cart</a>
+					<a href="">Cart</a>
 					<a href="">About</a>
 				</div>
 			</li> 	
